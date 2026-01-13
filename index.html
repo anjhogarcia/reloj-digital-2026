@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J-ALEX REAL - Multi-Herramienta 2026</title>
+    <style>
+        :root { --neon: #00ffcc; --bg: #0a0a0a; --panel: #1a1a1a; --gold: #ffcc00; }
+        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; }
+        .header { text-align: center; border-bottom: 2px solid var(--neon); padding-bottom: 10px; margin-bottom: 20px; }
+        .header h1 { margin: 0; color: var(--neon); letter-spacing: 2px; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: var(--panel); padding: 15px; border-radius: 10px; border: 1px solid #333; }
+        .card h2 { font-size: 1.2rem; color: var(--neon); border-bottom: 1px solid #444; padding-bottom: 5px; }
+        #reloj-local { font-size: 2.5rem; font-weight: bold; color: var(--neon); text-align: center; }
+        .peso-resultado { font-size: 1.8rem; text-align: center; color: var(--gold); background: #000; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        button { width: 100%; background: #333; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; margin-top: 5px; font-weight: bold;}
+        button:hover { background: var(--neon); color: black; }
+        #calc-display { width: 100%; height: 40px; background: #000; color: var(--neon); text-align: right; font-size: 1.5rem; border: 1px solid #444; margin-bottom: 10px; padding: 5px; box-sizing: border-box; }
+        .calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+        audio { width: 100%; margin-top: 10px; filter: invert(1); }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>J-ALEX REAL</h1>
+    <p>#reflexiones2025 | Colombia 🇨🇴</p>
+</div>
+
+<div class="grid-container">
+    <div class="card">
+        <h2>Reloj Digital 2026</h2>
+        <div id="reloj-local">00:00:00</div>
+        <div id="fecha-actual" style="text-align: center; color: #aaa;"></div>
+    </div>
+
+    <div class="card">
+        <h2>Báscula (Neto)</h2>
+        <input type="number" id="pb" placeholder="Peso Bruto" style="width:100%; margin-bottom:5px;">
+        <input type="number" id="pt" placeholder="Tara" style="width:100%; margin-bottom:5px;">
+        <div class="peso-resultado">NETO: <span id="res">0.00</span> kg</div>
+        <button onclick="document.getElementById('res').innerText = (document.getElementById('pb').value - document.getElementById('pt').value).toFixed(2)">CALCULAR</button>
+    </div>
+
+    <div class="card">
+        <h2>Radio & Reflexión</h2>
+        <div id="reflex" style="font-style: italic; color: #ddd; min-height: 60px;">"Un diamante sigue siendo un diamante aunque un ciego lo confunda con un trozo de vidrio."</div>
+        <audio controls src="https://streaming.radio.co/s6959124e5/listen"></audio>
+    </div>
+</div>
+
+<script>
+    function update() {
+        const now = new Date();
+        document.getElementById('reloj-local').innerText = now.toLocaleTimeString('es-CO');
+        document.getElementById('fecha-actual').innerText = now.toLocaleDateString('es-CO', {weekday:'long', day:'numeric', month:'long'});
+    }
+    setInterval(update, 1000);
+    update();
+</script>
+
+</body>
+</html>
